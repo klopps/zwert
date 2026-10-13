@@ -1,0 +1,110 @@
+body {
+	font-family: 'Roboto Condensed', sans-serif;
+	font-size: 16px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+
+	/* Hintergrundbild */
+	background-image: url(images/background5.jpg);
+	background-size: 100% auto;
+	background-repeat: no-repeat;
+}
+
+.container {
+	width: 410px;
+	background-color: rgba(240,240,255,0.8);
+	border-radius: 6px;
+	
+}
+
+#zwert, #ausloesewertmz, #ausloesewertmy {
+	font-size: 24px;
+}
+
+h4 {
+	padding-top: 20px;
+}
+
+.line {
+	height: 50px;
+	line-height: 50px;
+}
+
+.line input {
+	line-height: normal;
+	vertical-align: middel;
+}
+
+.line input[type="number"] {
+	width: 80px;
+	text-align: right;
+	border-radius: 6px;
+	border: solid 1px #AAA;
+	
+}
+
+.eintragung {
+	border-bottom: 1px solid #000;
+	background-color: #eee;
+	line-height: 30px;
+	margin-bottom: 10px;
+}
+
+/* Custom page header */
+.header {
+  /*  border-bottom: 1px solid #e5e5e5; */
+  margin-bottom: 10px;
+}
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+  padding-bottom: 19px;
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  /* border-top: 1px solid #e5e5e5;*/
+}
+
+.bs-callout {
+	padding: 6px;
+	margin: 16px 0;
+	border: 1px solid #aaa;
+	border-left-width: 5px;
+	border-radius: 6px;
+	background-color: #fff;
+}
+
+.bs-callout-danger {
+	border-left-color: #d9534f;
+}
+
+.nav-pills > li {
+	border-radius: 6px;
+}
+
+.nav-pills > li.active > a {
+	background-color: #4375B0;
+}
+
+label.icon > input[type="radio"] { /* HIDE RADIO */
+  visibility: hidden; /* Makes input not-clickable */
+  position: absolute; /* Remove input from document flow */
+}
+label.icon > input[type="radio"] + img{ /* IMAGE STYLES */
+  cursor:pointer;
+  border:3px solid transparent;
+  border-radius: 10px;
+}
+label.icon > input[type="radio"]:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
+  border:2px solid #000;
+  border-radius: 10px;
+}
+label.icon > input[type="radio"]:disabled + img{ /* (RADIO CHECKED) IMAGE STYLES */
+  border:3px solid red;
+  border-radius: 10px;
+}

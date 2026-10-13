@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Z-Wert-Kalkulator</title>
+  <meta name="description" content="Z-Wert-Kalkulator: Skibindungseinstellung nach DIN/ISO 11088 berechnen, auch offline.">
+  <meta name="theme-color" content="#1e5aa8">
+  <link rel="manifest" href="app.webmanifest">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Z-Wert">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="stylesheet" href="app.css">
+  <script type="module" src="js/pwa.js"></script>
+  <script type="module" src="js/ui.js"></script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header off-print">
+      <a class="brand" href="index.html">Z-Wert</a>
+      <nav aria-label="Hauptnavigation">
+        <ul class="nav">
+          <li><a href="index.html" aria-current="page">Kalkulator</a></li>
+          <li><a href="info.html">Info</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="card">
+      <h1 class="page-title">
+        <span class="off-print">Z-Wert-Kalkulator</span>
+        <span class="on-print">Skibindungseinstellung nach DIN/ISO 11088</span>
+      </h1>
+
+      <div class="off-print stack">
+        <p>Vor der Benutzung des Z-Wert-Kalkulators solltest Du unbedingt die ausführlichen Informationen auf der <a href="info.html">Info-Seite lesen</a>.</p>
+        <p class="callout">Für die berechneten Werte wird keinerlei Gewähr übernommen.</p>
+      </div>
+
+      <form id="rechner" class="rows" autocomplete="off" onsubmit="return false">
+        <div class="row">
+          <label for="gewicht" class="row-label"><img src="images/gewicht.png" alt="" width="32" height="32">Körpergewicht</label>
+          <div class="field-wrap"><input type="number" id="gewicht" name="gewicht" class="field" inputmode="numeric" min="0" max="250" step="1"> <span>kg</span></div>
+        </div>
+        <div class="row">
+          <label for="groesse" class="row-label"><img src="images/groesse.png" alt="" width="32" height="32">Körpergröße</label>
+          <div class="field-wrap"><input type="number" id="groesse" name="groesse" class="field" inputmode="numeric" min="0" max="250" step="1"> <span>cm</span></div>
+        </div>
+        <div class="row">
+          <label for="sohlenlaenge" class="row-label"><img src="images/sohlenlaenge.png" alt="" width="32" height="32">Sohlenlänge</label>
+          <div class="field-wrap"><input type="number" id="sohlenlaenge" name="sohlenlaenge" class="field" inputmode="numeric" min="0" max="400" step="1"> <span>mm</span></div>
+        </div>
+        <div class="row">
+          <label for="alter" class="row-label"><img src="images/alter.png" alt="" width="32" height="32">Alter</label>
+          <div class="field-wrap"><input type="number" id="alter" name="alter" class="field" inputmode="numeric" min="0" max="120" step="1"> <span>Jahre</span></div>
+        </div>
+        <fieldset class="row">
+          <legend class="sr-only">Fahrertyp</legend>
+          <div class="row-label" aria-hidden="true"><img src="images/fahrertyp.png" alt="" width="32" height="32"><span>Typ: <span id="fahrertyptext">Anfänger</span></span></div>
+          <div class="typ-options">
+            <label class="typ" data-typ="1">
+              <input type="radio" name="fahrertyp" id="fahrertyp1" value="1" checked>
+              <img src="images/fahrertyp1.png" alt="Fahrertyp 1: Anfänger" width="48" height="48">
+            </label>
+            <label class="typ" data-typ="2">
+              <input type="radio" name="fahrertyp" id="fahrertyp2" value="2">
+              <img src="images/fahrertyp2.png" alt="Fahrertyp 2: Fortgeschritten" width="48" height="48">
+            </label>
+            <label class="typ" data-typ="3">
+              <input type="radio" name="fahrertyp" id="fahrertyp3" value="3">
+              <img src="images/fahrertyp3.png" alt="Fahrertyp 3: Könner" width="48" height="48">
+            </label>
+          </div>
+        </fieldset>
+      </form>
+
+      <section class="protokoll on-print" aria-label="Angaben für">
+        <h2>Angaben für:</h2>
+        <div class="signature">
+          <span>Nachname, Vorname</span><span class="line"></span>
+          <span>Datum / Unterschrift</span>
+          <span class="line-pair"><span class="line"></span><span class="line"></span></span>
+        </div>
+      </section>
+
+      <section class="results" aria-labelledby="ergebnis-titel">
+        <h2 id="ergebnis-titel" class="sr-only">Ergebnis</h2>
+        <div id="ergebnis" class="rows" aria-live="polite">
+          <div class="row">
+            <div class="row-label"><img src="images/zwert.png" alt="" width="32" height="32"><span>Bindungseinstlg. (Z-Wert)</span></div>
+            <div id="zwert" class="value"></div>
+          </div>
+          <div class="row">
+            <div class="row-label"><img src="images/mz.png" alt="" width="32" height="32"><span>Drehung (M<sub>z</sub>)</span></div>
+            <div id="ausloesewertmz" class="value"></div>
+          </div>
+          <div class="row">
+            <div class="row-label"><img src="images/my.png" alt="" width="32" height="32"><span>Vorwärtsneigung (M<sub>y</sub>)</span></div>
+            <div id="ausloesewertmy" class="value"></div>
+          </div>
+          <p id="hinweis-norm" hidden class="norm-hint">
+            <strong>Außerhalb der Norm:</strong> Für diese Kombination aus Gewicht, Größe und Sohlenlänge sieht die Norm DIN/ISO 11088 keinen Wert vor. Angezeigt wird der nächstliegende Tabellenwert. Bitte unbedingt von einem Fachbetrieb prüfen lassen.
+          </p>
+        </div>
+      </section>
+
+      <section class="protokoll on-print" aria-label="Bindung eingestellt durch">
+        <h2>Bindung eingestellt durch:</h2>
+        <div class="signature">
+          <span>Nachname, Vorname</span><span class="line"></span>
+          <span>Datum / Unterschrift</span>
+          <span class="line-pair"><span class="line"></span><span class="line"></span></span>
+        </div>
+      </section>
+
+      <div class="actions off-print">
+        <button type="button" id="drucken" class="btn btn-dark"><img src="images/drucker.png" alt="" width="24" height="24">Drucken</button>
+        <button type="button" id="beispiel" hidden class="btn btn-outline">Beispiel</button>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <p id="install-hint" hidden class="off-print">
+        <button type="button" id="install-btn" class="link-btn">Z-Wert als Offline-App installieren</button>
+      </p>
+      <p id="install-help" hidden class="install-help off-print"></p>
+      <p class="off-print">
+        <a href="datenschutz.html">Datenschutz</a>
+        <span aria-hidden="true">·</span>
+        <a href="impressum.html">Impressum</a>
+      </p>
+      <p class="on-print">www.bindungseinstellung.de</p>
+    </footer>
+  </div>
+</body>
+</html>

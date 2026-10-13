@@ -1,0 +1,583 @@
+/* Z-Wert-Kalkulator: eigenes, schlankes CSS. Mobile First: Basis gilt ab 320 px,
+   die Seite ist schmal gehalten und braucht keine Breakpoints. */
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('fonts/roboto-condensed-latin-300-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/roboto-condensed-latin-400-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('fonts/roboto-condensed-latin-700-normal.woff2') format('woff2');
+}
+
+:root {
+  --ink: #0f172a;
+  --muted: #475569;
+  --line: #e2e8f0;
+  --border: #94a3b8;
+  --link: #1d4ed8;
+  --ok: #15803d;
+  --radius: 0.5rem;
+  --tap: 2.75rem; /* Mindestgröße von Touch-Zielen */
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Hintergrund steht am body und wird auf die gesamte Fläche übertragen. Hätte html einen eigenen
+   Hintergrund, zeigte sich über dem Bild ein weißer Streifen. */
+body {
+  margin: 0;
+  min-height: 100dvh;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  background-color: #fff;
+  background-image: url('images/background.webp');
+  background-repeat: no-repeat;
+  background-position: 70% top;
+  background-size: max(100%, 900px) auto;
+  color: var(--ink);
+  font-family: 'Roboto Condensed', ui-sans-serif, system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: var(--link);
+}
+
+h1,
+h2 {
+  margin: 0;
+  line-height: 1.25;
+}
+
+p {
+  margin: 0 0 0.75rem;
+}
+
+/* ---------- Seitengerüst ---------- */
+
+.page {
+  max-width: 32rem;
+  margin: 0 auto;
+  padding: 0.75rem 1rem 1.5rem;
+}
+
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.brand {
+  color: #fff;
+  font-size: 1.875rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.nav {
+  display: flex;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  padding: 0 0.75rem;
+  border-radius: 0.5rem;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.nav a:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.nav a[aria-current='page'] {
+  background: #fff;
+  color: var(--ink);
+}
+
+.card {
+  padding: 1rem;
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+.site-footer {
+  margin-top: 1rem;
+  color: var(--muted);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.site-footer a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  padding: 0 0.5rem;
+  color: inherit;
+}
+
+/* ---------- Bausteine ---------- */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.stack > * {
+  margin-bottom: 0.75rem;
+}
+
+.stack > :last-child {
+  margin-bottom: 0;
+}
+
+.callout {
+  padding: 0.75rem;
+  border: 1px solid #cbd5e1;
+  border-left: 0.5rem solid #dc2626;
+  border-radius: var(--radius);
+  background: #fff;
+}
+
+/* Installations-Link im Footer: sieht aus wie die Links zu Datenschutz und Impressum */
+.link-btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  padding: 0 0.5rem;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.site-footer .install-help {
+  margin: 0 0 0.5rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: var(--tap);
+  padding: 0 1rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn img {
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0.125rem;
+  border-radius: 0.25rem;
+  background: #fff;
+}
+
+.btn-dark {
+  background: #1e293b;
+  color: #fff;
+}
+
+.btn-dark:hover {
+  background: #334155;
+}
+
+.btn-outline {
+  border-color: var(--border);
+}
+
+.btn:focus-visible,
+.link-btn:focus-visible,
+.field:focus-visible,
+a:focus-visible {
+  outline: 3px solid #60a5fa;
+  outline-offset: 2px;
+}
+
+/* ---------- Formular und Ergebnis ---------- */
+
+.rows {
+  margin-top: 0.75rem;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+  margin: 0;
+  padding: 0.375rem 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+
+.row:first-child {
+  border-top: 0;
+}
+
+.row-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.row-label img {
+  flex: none;
+  width: 2rem;
+  height: 2rem;
+}
+
+.field-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.field {
+  width: 6rem;
+  height: var(--tap);
+  padding: 0 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #fff;
+  color: inherit;
+  font: inherit;
+  font-size: 1rem; /* mindestens 16 px, sonst zoomt iOS beim Fokus */
+  text-align: right;
+}
+
+.typ-options {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.typ {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 3rem;
+  min-height: 3rem;
+  cursor: pointer;
+}
+
+.typ input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.typ img {
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--radius);
+}
+
+.typ input:checked + img {
+  outline: 4px solid var(--link);
+  outline-offset: 2px;
+}
+
+.typ input:focus-visible + img {
+  outline: 4px solid #60a5fa;
+  outline-offset: 2px;
+}
+
+.results {
+  margin-top: 1rem;
+  padding-top: 0.5rem;
+  border-top: 2px solid #cbd5e1;
+}
+
+.results .rows {
+  margin-top: 0;
+}
+
+.value {
+  min-height: 2.5rem;
+  font-size: 1.5rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.125rem 0.75rem;
+  border-radius: 0.375rem;
+  background: var(--ok);
+  color: #fff;
+}
+
+.norm-hint {
+  margin: 0.5rem 0 0;
+  padding: 0.75rem;
+  border: 1px solid #f59e0b;
+  border-left-width: 0.5rem;
+  border-radius: var(--radius);
+  background: #fffbeb;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+/* Hinweis-Leiste am unteren Rand (Update verfügbar), erzeugt von js/pwa.js */
+.update-banner {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0.75rem max(0.75rem, env(safe-area-inset-bottom));
+  background: var(--ink);
+  color: #fff;
+}
+
+.update-banner p {
+  flex: 1;
+  margin: 0;
+}
+
+.update-banner .btn {
+  background: #fff;
+  color: var(--ink);
+}
+
+/* ---------- Textseiten (Info, Impressum, Datenschutz) ---------- */
+
+.prose h1 {
+  margin-bottom: 0.75rem;
+  font-size: 1.5rem;
+}
+
+.prose h2 {
+  margin: 1.5rem 0 0.5rem;
+  font-size: 1.25rem;
+}
+
+.prose section:first-child > h2:first-child {
+  margin-top: 0;
+}
+
+.prose address {
+  font-style: normal;
+}
+
+.prose ul {
+  margin: 0 0 0.75rem;
+  padding-left: 1.5rem;
+}
+
+.prose li {
+  margin-bottom: 0.25rem;
+}
+
+.prose dl {
+  margin: 0;
+}
+
+.prose dt {
+  font-weight: 700;
+}
+
+.prose dd {
+  margin: 0 0 0.75rem;
+}
+
+.param {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.param > img {
+  flex: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-top: 0.25rem;
+}
+
+.subtypes {
+  margin-top: 0.75rem;
+}
+
+.small {
+  font-size: 0.875rem;
+}
+
+.note {
+  padding: 0.75rem;
+  border: 1px solid #fbbf24;
+  border-radius: var(--radius);
+  background: #fffbeb;
+}
+
+/* ---------- Druck ---------- */
+
+.on-print,
+.protokoll {
+  display: none;
+}
+
+.page-title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.signature {
+  display: grid;
+  grid-template-columns: 10rem 1fr;
+  align-items: end;
+  gap: 1.5rem 0.5rem;
+}
+
+.line {
+  display: block;
+  height: 2rem;
+  border-bottom: 1px solid #000;
+}
+
+.line-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.protokoll h2 {
+  margin: 1.5rem 0 0.5rem;
+  font-size: 1.125rem;
+}
+
+@media print {
+  body {
+    padding: 0;
+    background: none;
+  }
+
+  .page {
+    max-width: none;
+    padding: 0;
+  }
+
+  .card {
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .off-print {
+    display: none !important;
+  }
+
+  .on-print {
+    display: revert;
+  }
+
+  .protokoll {
+    display: block;
+  }
+
+  .page-title {
+    position: static;
+    width: auto;
+    height: auto;
+    margin-bottom: 1rem;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    font-size: 1.25rem;
+  }
+
+  .results {
+    margin-top: 2rem;
+  }
+
+  .norm-hint {
+    border-color: #000;
+    background: transparent;
+  }
+
+  .site-footer {
+    margin-top: 1.5rem;
+    color: inherit;
+  }
+}

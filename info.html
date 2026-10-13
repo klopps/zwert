@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Info – Z-Wert-Kalkulator</title>
+  <meta name="description" content="Z-Wert-Kalkulator: Skibindungseinstellung nach DIN/ISO 11088 berechnen, auch offline.">
+  <meta name="theme-color" content="#1e5aa8">
+  <link rel="manifest" href="app.webmanifest">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Z-Wert">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="stylesheet" href="app.css">
+  <script type="module" src="js/pwa.js"></script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header off-print">
+      <a class="brand" href="index.html">Z-Wert</a>
+      <nav aria-label="Hauptnavigation">
+        <ul class="nav">
+          <li><a href="index.html">Kalkulator</a></li>
+          <li><a href="info.html" aria-current="page">Info</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="card">
+      <article class="prose">
+        <section>
+          <h1>Was ist der Z-Wert?</h1>
+          <p>Eine korrekte Einstellung des Auslösewertes einer Skibindungseinstellung soll verhindern, dass man sich beim Skifahren verletzt. Verletzungen können im Zusammenhang mit der Bindung dadurch entstehen, dass die Bindung entweder nicht (bzw. zu spät) oder aber zu früh auslöst. Beides kann sehr unangenehm werden. Daher gilt es einen Kompromiss zu finden.</p>
+          <p>Ziel ist es das Drehmoment am Schienbein des Skifahrers zu begrenzen. Unter Zuhilfenahme empirischer Untersuchungen von Skiunfällen wurde die Norm <a href="http://de.wikipedia.org/wiki/ISO_11088" target="_blank" rel="noopener">DIN/ISO 11088.</a> verfasst. Damit kann man nun mit wenig  Aufwand einen guten Wert für die Einstellung seiner Skibindung ermitteln.</p>
+          <p>Der mittels des in der Norm beschriebenen Verfahrens ermittelte der <a href="http://de.wikipedia.org/wiki/Z-Wert_(Ski)" target="_blank" rel="noopener">Z-Wert</a>, wird direkt am Vorder- und Hinterbacken eingestellt. Er entspricht den Drehmomenten für die Drehung (vorderer Bindungsteil) und die Vorwärtsneigung (hinterer Bindungsteil) nur unter optimalen Bedingungen. Die tatsächlich notwendige Einstellung für die jeweilige Kombination aus Bindung und Skischuh kann also von dem hier berechneten Z-Wert abweichen.</p>
+        </section>
+
+        <section>
+          <h2>Was bedeuten M<sub>z</sub> und M<sub>y</sub>?</h2>
+          <p>M<sub>z</sub> und M<sub>y</sub> sind die Auslösewerte der Bindung. M<sub>z</sub> ist das einzustellende Drehmoment (in Nm) für eine Drehung des Skischuhs in der Bindung, während M<sub>y</sub> das Drehmoment zur Auslösung der Bindung in der Vorwärtsneigung beschreibt. M<sub>z</sub> wird in der Regel nur am Vorder-, M<sub>y</sub> am Hinterbacken gemessen. Eingestellt wird jedoch auf der Auslöseskala nach dem Z-Wert.</p>
+        </section>
+
+        <section>
+          <h2>Die Parameter</h2>
+          <p>In die Berechnung des Z-Wertes fließen fünf Parameter ein.</p>
+          <dl>
+            <div class="param">
+              <img src="images/gewicht.png" alt="" width="40" height="40">
+              <div><dt>Körpergewicht</dt>
+              <dd>Es wird das reine Körpergewicht benötigt, also das Gewicht des Skifahrers im unbekleideten Zustand. Die Angabe erfolgt in Kilogramm (kg).</dd></div>
+            </div>
+            <div class="param">
+              <img src="images/groesse.png" alt="" width="40" height="40">
+              <div><dt>Körpergröße</dt>
+              <dd>Die Körpergröße muss in Zentimetern ( cm) angegeben werden. Sie wird von Kopf bis Fuß gemessen – ohne Helm und ohne Schuhe.</dd></div>
+            </div>
+            <div class="param">
+              <img src="images/sohlenlaenge.png" alt="" width="40" height="40">
+              <div><dt>Schuhsohlenlänge</dt>
+              <dd>Es wird Sohlenlänge des Skischuhs in Millimetern (mm) benötigt, da durch die Länge des Schuhs die Hebelkraft - oder besser das Drehmoment - entscheidend beeinflusst wird. Außerdem muss natürlich die Bindung auf die korrekte Länge eingestellt werden.</dd></div>
+            </div>
+            <div class="param">
+              <img src="images/alter.png" alt="" width="40" height="40">
+              <div><dt>Alter</dt>
+              <dd>Das Alter des Skifahrers wird muss in Jahren angegeben werden. Diese Angabe ist wichtig, da Skifahrer die jünger als 10 oder älter als 49 Jahre sind, einen niedrigeren Z-Wert erhalten.</dd></div>
+            </div>
+            <div class="param">
+              <img src="images/fahrertyp.png" alt="" width="40" height="40">
+              <div><dt>Fahrertyp</dt>
+              <dd>Es wird zwischen drei Fahrertypen unterschieden:</dd>
+              <dd class="subtypes">
+                <span class="param">
+                  <img src="images/fahrertyp1.png" alt="" width="40" height="40">
+                  <span><strong>Typ 1: Anfänger</strong><br>Langsame, vorsichtige bis gemäßigte Fahrt in leichtem Gelände mit geringer Hangneigung. In diese Kategorie fallen typischerweise die Anfänger.</span>
+                </span>
+                <span class="param">
+                  <img src="images/fahrertyp2.png" alt="" width="40" height="40">
+                  <span><strong>Typ 2: Fortgeschritten</strong><br>In diese Kategorie fallen alle Skifahrer, die man weder dem Typ 1 noch dem Typ 3 zuordnen kann. Der Fahrer muss mindestens 13kg wiegen.</span>
+                </span>
+                <span class="param">
+                  <img src="images/fahrertyp3.png" alt="" width="40" height="40">
+                  <span><strong>Typ 3: Könner</strong><br>Hohe Geschwindigkeit und aggressiver Fahrstil in Gelände mit mittlerer bis starker Hangneigung. Der Fahrer muss mindestens 22kg wiegen.</span>
+                </span>
+              </dd></div>
+            </div>
+          </dl>
+        </section>
+
+        <section>
+          <h2>Warum sollte ich meine Bindung nicht selber einstellen?</h2>
+          <p>Auch wenn Du den Z-Wert korrekt ermittelt und an der Skibindung genau eingestellt hast, kann es sein, dass deine Bindung nicht genau arbeitet. Das passiert bei älteren Bindungen eher, als bei neuen. Aber ganz sicher kann man sich auch bei einer neuen Bindung nicht sein. Außerdem kann auch die Kombination von Bindung und Skischuh zu einer Veränderung führen, z.B. wenn die Sohle des Skischuhs und die Bindungsplatte rau sind und bei der Auslösung durch Drehung auch der dadurch entstehende Reibwiderstand überwunden werden muss.</p>
+          <p>Daher sollte die Skibindung immer von einem Fachbetrieb unter Verwendung des Skischuhs eingestellt werden, mit dem der Ski gefahren werden soll. Der Fachbetrieb misst anschließend die tatsächlichen Auslösewerte und passt die Einstellung an der Bindung solange an, bis die korrekten Drehmomente erreicht sind. Ein ordentlicher Fachbetrieb dokumentiert auch diese Einstellungen und gibt dir einen Beleg mit.</p>
+          <p>Außerdem gibt es noch eine Reihe von weiteren Einstellungen, um die Bindung perfekt an den Skischuh anzupassen. Und das können die Fachleute am besten.</p>
+          <p>Wenn Du meinst, dass Du die Bindung selber einstellen solltest, dann machst Du das auf eigene Gefahr.</p>
+        </section>
+
+        <section>
+          <h2>Und warum gibt es dann diese Seite?</h2>
+          <p>Hattest Du schon einmal das Gefühl, dass da mit der Einstellung deiner Bindung etwas nicht stimmt? Vielleicht war beim Skiverleih auch am Samstagmorgen so richtiges Chaos und Du bist dir nicht sicher, dass der Typ da nicht etwas verwechselt hat. Dann kannst Du zur Sicherheit mit dem Z-Wert-Kalkulator selber nachrechnen und ggfs. reklamieren.</p>
+          <p>Man kann den Z-Wert natürlich mit den gängigen Tabellen berechnen. Das war mir aber zu unpraktisch. Auch findest Du im Netz bereits einen Z-Wert-Kalkulator, doch der funktioniert mit Flash und das läuft auf vielen Smartphones nicht (und ist Flash sowieso doof). Daher gibt es nun diesen Kalkulator, der nur auf HTML, CSS und JavaScript basiert und auch auf mobilen Endgeräten funktioniert.</p>
+        </section>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <p class="off-print">
+        <a href="datenschutz.html">Datenschutz</a>
+        <span aria-hidden="true">·</span>
+        <a href="impressum.html">Impressum</a>
+      </p>
+      <p class="on-print">www.bindungseinstellung.de</p>
+    </footer>
+  </div>
+</body>
+</html>
